@@ -10,15 +10,27 @@ import unittest
 
 
 def lineare_suche(liste, wert):
-    for i in range(0, len(liste) - 1):
-        if liste[i] == wert:
-            return i
+    for index in range(0, len(liste)):
+        if liste[index] == wert:
+            return index
     return -1
 
 # Testcases
 
 
 class TestLineareSuche(unittest.TestCase):
+    def test_0(self):
+        # Arrange
+        liste = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
+        wert = 'H'
+        expected = 7
+
+        # Act
+        result = lineare_suche(liste, wert)
+
+        # Assert
+        self.assertEqual(result, expected)
+
     def test_1(self):
         # Arrange
         liste = [1, 2, 3, 4, 5, 6, 7, 8]
@@ -60,6 +72,18 @@ class TestLineareSuche(unittest.TestCase):
         liste = []
         wert = 1
         expected = -1
+
+        # Act
+        result = lineare_suche(liste, wert)
+
+        # Assert
+        self.assertEqual(result, expected)
+
+    def test_5(self):
+        # Arrange
+        liste = range(0, 200000001)
+        wert = 200000000
+        expected = 200000000
 
         # Act
         result = lineare_suche(liste, wert)
