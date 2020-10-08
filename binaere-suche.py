@@ -10,16 +10,20 @@ import unittest
 
 
 def binaere_suche(liste, wert):
+    zaehler = 0
     links = 0
     rechts = len(liste) - 1
     while links <= rechts:
-        mitte = (rechts-links) // 2
+        zaehler = zaehler + 1
+        mitte = (links + rechts) // 2
         if liste[mitte] == wert:
+            print(zaehler)
             return mitte
         if liste[mitte] < wert:
             links = mitte + 1
         else:
             rechts = mitte - 1
+    print(zaehler)
     return -1
 
 # Testcases
@@ -55,19 +59,6 @@ class TestLineareSuche(unittest.TestCase):
         liste = [1, 2, 3, 4, 5, 6, 7, 8]
         wert = 9
         expected = -1
-
-        # Act
-        result = binaere_suche(liste, wert)
-
-        # Assert
-        self.assertEqual(result, expected)
-
-    def test_3(self):
-        # Arrange
-        liste = [2, 3, 1, 5, 8, 6, 7, 4]
-        liste.sort()
-        wert = 1
-        expected = liste.index(wert)
 
         # Act
         result = binaere_suche(liste, wert)
